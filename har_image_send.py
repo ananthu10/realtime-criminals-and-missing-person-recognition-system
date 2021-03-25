@@ -1,21 +1,30 @@
 
 
+import os
+from pathlib import Path
 import cv2
 import requests
 import json
 size = 4
 
+
+dirname, filename = os.path.split(os.path.abspath(__file__))
+# print(BASE_DIR)
+# model = os.path.join(BASE_DIR, "\CMPRS\model\haarcascade_frontalface_alt.xml")
+model = dirname+"\model\haarcascade_frontalface_alt.xml"
+# print(BASE_DIR)
+# print(model)
+# face_route = os.path.join(BASE_DIR, "/CMPRS/unknowfaces")
+face_route = dirname+"\\unknowfaces"
+print(face_route)
 webcam = cv2.VideoCapture(
-    "rtsp://192.168.0.1:8080/h264_ulaw.sdp")
+    "rtsp://192.168.0.10:8080/h264_ulaw.sdp")
 addr = 'http://127.0.0.1:8000/'
 test_url = addr + 'api/test/'
 
-# We load the xml file
 # classifier = cv2.CascadeClassifier("rtsp://192.168.0.11:8080/h264_ulaw.sdp")
-# #  Above line normalTest
-classifier = cv2.CascadeClassifier(
-    'f:/project-final/CMPRS/model/haarcascade_frontalface_alt.xml')
-# Above line test with different calulation
+
+classifier = cv2.CascadeClassifier(model)
 
 
 while True:
@@ -32,8 +41,7 @@ while True:
         cv2.rectangle(im, (x, y), (x + w, y + h), (0, 255, 0), thickness=4)
         # Save just the rectangle faces in SubRecFaces
         sub_face = im[y:y+h, x:x+w]
-        FaceFileName = "f:/project-final/CMPRS/unknowfaces/face_" + \
-            str(y) + ".jpg"
+        FaceFileName = face_route+"/face_" + str(y) + ".jpg"
         cv2.imwrite(FaceFileName, sub_face)
         files = {'image': open(FaceFileName, 'rb')}
         try:
