@@ -12,6 +12,7 @@ from django.views.generic import TemplateView
 # Create your views here.
 import face_recognition
 from faceuploader.models import Face_image
+import numpy as np
 
 
 class RecognizeUploadView(APIView):
@@ -31,7 +32,7 @@ class RecognizeUploadView(APIView):
         for i in range(0, len(images)):
             images[i] = face_recognition.load_image_file(files[i])
             encodings[i] = face_recognition.face_encodings(images[i])[0]
-
+        NAME = "Unknown"
         # Create arrays of known face encodings and their names
         known_face_encodings = encodings
         known_face_names = names
@@ -80,12 +81,12 @@ class RecognizeUploadView(APIView):
             if len(unknown_face_encodings) > 0:
                 face_found = True
                 # See if the first face in the uploaded image matches the known face of Obama
-                for face_encoding in known_face_encodings:
+                for face_encoding, know_face_name in zip(known_face_encodings, known_face_names):
                     match_results = face_recognition.compare_faces(
                         [face_encoding], unknown_face_encodings[0])
                     if match_results[0]:
                         is_obama = True
-                        NAME = known_face_names[0]
+                        NAME = know_face_name
             # Return the result as json
             if(is_obama):
                 print("face_found_in_image its obama"+NAME)
