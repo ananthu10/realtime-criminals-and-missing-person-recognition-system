@@ -1,8 +1,9 @@
 from django import forms
-from .models import image
+from .models import Face_image
 
 
 class ImageForm(forms.ModelForm):
     class Meta:
-        model = image
+        model = Face_image
         fields = '__all__'
+        labels = {'photo': ' '}

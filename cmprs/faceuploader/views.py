@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import image
+from .models import Face_image
 from .form import ImageForm
 # Create your views here.
 
@@ -10,5 +10,5 @@ def faceupload(request):
         if form.is_valid():
             form.save()
     form = ImageForm()
-    img = image.objects.all()
+    img = Face_image.objects.all()
     return render(request, 'faceupload/home.html', {'img': img, 'form': form})
