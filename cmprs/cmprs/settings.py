@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'geoposition',
     'rest_framework',
     'recognizer',
     'faceuploader'
+
 ]
 
 MIDDLEWARE = [
@@ -72,7 +74,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'cmprs.wsgi.application'
-
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyC8icFlAHe5pwzCCmvQ-W5OxGTXF2-TqTg'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

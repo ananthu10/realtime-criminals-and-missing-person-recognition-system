@@ -40,6 +40,10 @@ class RecognizeUploadView(APIView):
         file_serializer = RecognizeSerializer(data=request.data)
         if file_serializer.is_valid():
             image = request.data.get('image')
+            location = request.data.get('location')
+            latitude = request.data.get('latitude')
+            longitude = request.data.get('longitude')
+            current_time = request.data.get('current_time')
 
             # # Pre-calculated face encoding of Obama generated with face_recognition.face_encodings(img)
             # known_face_encoding = [-0.09634063,  0.12095481, -0.00436332, -0.07643753,  0.0080383,
@@ -89,7 +93,7 @@ class RecognizeUploadView(APIView):
                         NAME = know_face_name
             # Return the result as json
             if(is_obama):
-                print("face_found_in_image its obama"+NAME)
+                print("face name:"+NAME, "found at "+location)
             file_serializer.save()
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
         else:
