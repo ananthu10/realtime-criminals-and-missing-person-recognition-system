@@ -5,6 +5,7 @@ from pathlib import Path
 import cv2
 import requests
 import json
+from datetime import datetime
 size = 4
 
 
@@ -18,7 +19,7 @@ model = dirname+"\model\haarcascade_frontalface_alt.xml"
 face_route = dirname+"\\unknowfaces"
 print(face_route)
 webcam = cv2.VideoCapture(
-    "rtsp://192.168.0.10:8080/h264_ulaw.sdp")
+    "rtsp://192.168.0.12:8080/h264_ulaw.sdp")
 addr = 'http://127.0.0.1:8000/'
 test_url = addr + 'api/test/'
 
@@ -35,6 +36,9 @@ while True:
     mini = cv2.resize(im, (int(im.shape[1] / size), int(im.shape[0] / size)))
 
     faces = classifier.detectMultiScale(mini)
+    location = "kuthiyathod"
+    longitude = "10.2277° N"
+    latitude = " 76.1971° E"
 
     for f in faces:
         (x, y, w, h) = [v * size for v in f]  # Scale the shapesize backup
@@ -43,9 +47,14 @@ while True:
         sub_face = im[y:y+h, x:x+w]
         FaceFileName = face_route+"/face_" + str(y) + ".jpg"
         cv2.imwrite(FaceFileName, sub_face)
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+
         files = {'image': open(FaceFileName, 'rb')}
+        data = {"location": location,
+                "latitude": latitude, "longitude": longitude, "current_time": current_time}
         try:
-            response = requests.post(test_url, files=files)
+            response = requests.post(test_url, files=files, data=data)
             print(json.loads(response.text))
         except requests.exceptions.HTTPError as e:
             print("Error: " + str(e))
