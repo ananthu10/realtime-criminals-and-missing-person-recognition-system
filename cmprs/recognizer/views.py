@@ -24,21 +24,23 @@ class RecognizeUploadView(APIView):
         encodings = []
         names = []
         files = []
+        ids = []
         prsn = Face_image.objects.all()
         for crime in prsn:
             images.append(crime.name+'_image')
             encodings.append(crime.name+'_face_encoding')
             files.append(crime.photo)
+            ids.append(crime.id)
             names.append('Name: '+crime.name)
         for i in range(0, len(images)):
             images[i] = face_recognition.load_image_file(files[i])
             encodings[i] = face_recognition.face_encodings(images[i])[0]
         NAME = "Unknown"
-        # Create arrays of known face encodings and their names
         known_face_encodings = encodings
         known_face_names = names
 
         file_serializer = RecognizeSerializer(data=request.data)
+
         if file_serializer.is_valid():
             image = request.data.get('image')
             location = request.data.get('location')
@@ -46,25 +48,28 @@ class RecognizeUploadView(APIView):
             longitude = request.data.get('longitude')
             current_time = request.data.get('current_time')
             print(location, latitude)
-            # Load the uploaded image file
+
             img = face_recognition.load_image_file(image)
-            # Get face encodings for any faces in the uploaded image
+
             unknown_face_encodings = face_recognition.face_encodings(img)
             face_found = False
             is_obama = False
             if len(unknown_face_encodings) > 0:
                 face_found = True
-                # See if the first face in the uploaded image matches the known face of Obama
-                for face_encoding, know_face_name in zip(known_face_encodings, known_face_names):
+
+                for face_encoding, know_face_name, ij in zip(known_face_encodings, known_face_names, prsn):
                     match_results = face_recognition.compare_faces(
                         [face_encoding], unknown_face_encodings[0])
                     if match_results[0]:
                         is_obama = True
                         NAME = know_face_name
-            # Return the result as json
+                        find_id = ij
+
             if(is_obama):
-                print("face name:"+NAME, "found at "+location)
-            file_serializer.save()
+                print("face name:"+NAME, "found at " +
+                      location + "face id "+str(find_id))
+
+                file_serializer.save(face_id=find_id)
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

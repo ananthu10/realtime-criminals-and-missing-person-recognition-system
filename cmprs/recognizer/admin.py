@@ -6,5 +6,5 @@ from .models import Recognize
 
 @admin.register(Recognize)
 class RecoAdmin(admin.ModelAdmin):
-    list_display = ['id', 'image', 'location',
+    list_display = ['id', 'face_id', 'image', 'location',
                     'latitude', 'longitude', 'current_time']

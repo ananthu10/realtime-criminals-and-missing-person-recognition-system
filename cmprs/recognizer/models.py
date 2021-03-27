@@ -2,13 +2,20 @@ from django.db import models
 
 # Create your models here.
 
+from faceuploader.models import Face_image
+
 
 class Recognize(models.Model):
-    image = models.FileField(blank=False, null=False)  # file uplaod changed
+
+    #image = models.ImageField(blank=False, null=False)
+    image = models.ImageField(upload_to='myphoto/%Y/%m/%d/', null=True)
     location = models.CharField(max_length=100, default='DEFAULT VALUE')
     latitude = models.CharField(max_length=20, default='DEFAULT VALUE')
     longitude = models.CharField(max_length=20, default='DEFAULT VALUE')
     current_time = models.CharField(max_length=20, default='no time bruh!')
+    face_id = models.ForeignKey(
+        Face_image, on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.image.name
