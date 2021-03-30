@@ -21,5 +21,6 @@ from faceuploader import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('recognizer.urls')),
+    path(r'homepage/', include('faceuploader.urls')),
     path('faceup/', views.faceupload),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

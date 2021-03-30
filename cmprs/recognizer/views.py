@@ -68,7 +68,6 @@ class RecognizeUploadView(APIView):
             if(is_obama):
                 print("face name:"+NAME, "found at " +
                       location + "face id "+str(find_id))
-
                 file_serializer.save(face_id=find_id)
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
         else:
