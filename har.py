@@ -1,50 +1,48 @@
 
 
-import cv2
-size = 4
-webcam = cv2.VideoCapture(
-    "rtsp://192.168.0.12:8080/h264_ulaw.sdp")  # Use camera
+# import cv2
+# size = 4
+# webcam = cv2.VideoCapture(
+#     "rtsp://192.168.0.12:8080/h264_ulaw.sdp")  # Use camera
 
-# We load the xml file
-# classifier = cv2.CascadeClassifier("rtsp://192.168.0.11:8080/h264_ulaw.sdp")
-# #  Above line normalTest
-classifier = cv2.CascadeClassifier(
-    'f:/project-final/CMPRS/model/haarcascade_frontalface_alt.xml')
-# Above line test with different calulation
-#classifier = cv2.CascadeClassifier('haarcascade_frontalface_alt_tree.xml')
-#classifier = cv2.CascadeClassifier('lbpcascade_frontalface.xml')
+# # We load the xml file
+# # classifier = cv2.CascadeClassifier("rtsp://192.168.0.11:8080/h264_ulaw.sdp")
+# # #  Above line normalTest
+# classifier = cv2.CascadeClassifier(
+#     'f:/project-final/CMPRS/model/haarcascade_frontalface_alt.xml')
+# # Above line test with different calulation
+# #classifier = cv2.CascadeClassifier('haarcascade_frontalface_alt_tree.xml')
+# #classifier = cv2.CascadeClassifier('lbpcascade_frontalface.xml')
 
 
-while True:
-    (rval, im) = webcam.read()
-    im = cv2.flip(im, 1, 0)  # Flip to act as a mirror
+# while True:
+#     (rval, im) = webcam.read()
+#     im = cv2.flip(im, 1, 0)  # Flip to act as a mirror
 
-    # Resize the image to speed up detection
-    mini = cv2.resize(im, (int(im.shape[1] / size), int(im.shape[0] / size)))
+#     # Resize the image to speed up detection
+#     mini = cv2.resize(im, (int(im.shape[1] / size), int(im.shape[0] / size)))
 
-    # detect MultiScale / faces
-    faces = classifier.detectMultiScale(mini)
+#     # detect MultiScale / faces
+#     faces = classifier.detectMultiScale(mini)
 
-    # Draw rectangles around each face
-    for f in faces:
-        (x, y, w, h) = [v * size for v in f]  # Scale the shapesize backup
-        cv2.rectangle(im, (x, y), (x + w, y + h), (0, 255, 0), thickness=4)
-        # Save just the rectangle faces in SubRecFaces
-        sub_face = im[y:y+h, x:x+w]
-        FaceFileName = "f:/project-final/CMPRS/unknowfaces/face_" + \
-            str(y) + ".jpg"
-        cv2.imwrite(FaceFileName, sub_face)
+#     # Draw rectangles around each face
+#     for f in faces:
+#         (x, y, w, h) = [v * size for v in f]  # Scale the shapesize backup
+#         cv2.rectangle(im, (x, y), (x + w, y + h), (0, 255, 0), thickness=4)
+#         # Save just the rectangle faces in SubRecFaces
+#         sub_face = im[y:y+h, x:x+w]
+#         FaceFileName = "f:/project-final/CMPRS/unknowfaces/face_" + \
+#             str(y) + ".jpg"
+#         cv2.imwrite(FaceFileName, sub_face)
 
-    # Show the image
-    cv2.imshow('see',   im)
-    key = cv2.waitKey(10)
-    # if Esc key is press then break out of the loop
-    if key == 27:  # The Esc key
-        break
+#     # Show the image
+#     cv2.imshow('see',   im)
+#     key = cv2.waitKey(10)
+#     # if Esc key is press then break out of the loop
+#     if key == 27:  # The Esc key
+#         break
 
 # import cv2
-
-
 # #import the cascade for face detection
 # FaceClassifier =cv2.CascadeClassifier
 # ('haarcascade_frontalface_default.xml')
