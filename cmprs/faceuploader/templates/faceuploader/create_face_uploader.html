@@ -6,7 +6,7 @@ faceuploader
 {% endblock title %}
 {% block content %}
 
-<form method="post">
+<form action="" method="POST" enctype="multipart/form-data" >
    {% csrf_token %}
    {{ face_uploader_form|crispy}}
    <input class="btn btn-primary" type="submit" value="Save">

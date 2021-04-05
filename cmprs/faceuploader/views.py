@@ -13,9 +13,23 @@ def face_uploader_index(request):
     )
 
 
+# def create_face_uploader(request):
+#     if request.method == 'POST':
+#         form = ImageForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#     form = ImageForm()
+#     img = Face_image.objects.all()
+#     return render(request, 'faceuploader/create_face_uploader.html', {'img': img, 'form': form})
+
+
 def create_face_uploader(request):
-    if request.method == "POST":
-        face_uploader_form = ImageForm(request.POST)
+    if request.method == 'POST':
+        face_uploader_form = ImageForm(request.POST, request.FILES)
+        print(face_uploader_form)
+        print("##############")
+        print(face_uploader_form.is_valid())
+        print("##############")
         if face_uploader_form.is_valid():
             face_uploader_form.save()
             return redirect('faceuploader:index')
@@ -66,16 +80,6 @@ def delete_face_uploader(request, pk):
 #     def form_valid(self, form):
 #         form.instance.created_by = self.request.user
 #         return super().form_valid(form)
-
-
-# def faceupload(request):
-#     if request.method == 'POST':
-#         form = ImageForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#     form = ImageForm()
-#     img = Face_image.objects.all()
-#     return render(request, 'faceupload/home.html', {'img': img, 'form': form})
 
 
 # class FaceUplaodDetailView(DetailView):

@@ -9,10 +9,11 @@ class Recognize(models.Model):
 
     #image = models.ImageField(blank=False, null=False)
     image = models.ImageField(upload_to='myphoto/%Y/%m/%d/', null=True)
-    location = models.CharField(max_length=100, default='DEFAULT VALUE')
-    latitude = models.CharField(max_length=20, default='DEFAULT VALUE')
-    longitude = models.CharField(max_length=20, default='DEFAULT VALUE')
-    current_time = models.CharField(max_length=20, default='no time bruh!')
+    location = models.CharField(max_length=100, default='no-locaton')
+    latitude = models.FloatField(max_length=20, default=0.0)
+    longitude = models.FloatField(max_length=20, default=0.0)
+    image_taken_time = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add=True)
     face_id = models.ForeignKey(
         Face_image, on_delete=models.CASCADE
     )
