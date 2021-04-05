@@ -40,9 +40,15 @@ INSTALLED_APPS = [
     'geoposition',
     'rest_framework',
     'recognizer',
-    'faceuploader'
+    'faceuploader',
+    'crispy_forms',
+
+    # 'crispy_forms'
 
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+ROOT_URLCONF = 'cmprs.urls'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,7 +66,7 @@ ROOT_URLCONF = 'cmprs.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,3 +134,13 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS=[
+#  BASE_DIR/ 'static',
+#  BASE_DIR / 'sales' / 'static',
+#  BASE_DIR / 'reports' / 'static',
+# ]
+# MEDIA_URL='/media/'
+# MEDIA_ROOT=BASE_DIR/'media'
