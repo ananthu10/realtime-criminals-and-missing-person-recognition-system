@@ -58,13 +58,13 @@ my profiles
       <div class="card" style="width: 18rem;">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Name:{{prs.name}}</li>
-          <li class="list-group-item">Case:{{prs.case}}</li>
+          <li class="list-group-item">Case:{{prs.Case}}</li>
           
         </ul>
       </div>
     </div>
   </div>
-  <a href="#" class="btn btn-primary">Track</a>
+   <a href="{% url 'faceuploader:track' pk=prs.id %}" class="btn btn-primary">Track</a> 
     </div>
 
 

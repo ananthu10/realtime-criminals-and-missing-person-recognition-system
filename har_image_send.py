@@ -19,8 +19,7 @@ model = dirname+"\model\haarcascade_frontalface_alt.xml"
 # face_route = os.path.join(BASE_DIR, "/CMPRS/unknowfaces")
 face_route = dirname+"\\unknowfaces"
 print(face_route)
-webcam = cv2.VideoCapture(
-    "rtsp://192.168.0.11:8080/h264_ulaw.sdp")
+webcam = cv2.VideoCapture("rtsp://192.168.0.11:8080/h264_ulaw.sdp")
 # addr = 'http://127.0.0.1:8000/'
 addr = 'http://192.168.0.22:8000/'
 test_url = addr + 'api/test/'
@@ -51,29 +50,35 @@ while True:
 
     faces = classifier.detectMultiScale(mini)
     location = "aluva"
-    longitude = "10.2277° N"
-    latitude = " 76.1971° E"
+    longitude = 76.1971
+
+    latitude = 10.227
 
     for f in faces:
         (x, y, w, h) = [v * size for v in f]  # Scale the shapesize backup
         cv2.rectangle(im, (x, y), (x + w, y + h), (0, 255, 0), thickness=4)
         # Save just the rectangle faces in SubRecFaces
         sub_face = im[y:y+h, x:x+w]
-        FaceFileName = face_route+"/face_" + str(y) + ".jpg"
+        FaceFileName = face_route+"\\face_" + str(y) + ".jpg"
         cv2.imwrite(FaceFileName, sub_face)
-        now = datetime.now()
-        current_time = now.strftime("%H:%M:%S")
-
+        # now = datetime.now()
+        # image_taken_time = now.strftime("%H:%M:%S")
+        image_taken_time = datetime.now()
+        print("##################")
+        print(image_taken_time)
+        print("##################")
         files = {'image': open(FaceFileName, 'rb')}
+        print("##################")
+        print(files)
         data = {"location": location,
-                "latitude": latitude, "longitude": longitude, "current_time": current_time}
+                "latitude": latitude, "longitude": longitude, "image_taken_time": image_taken_time}
 
-        fire_and_forget(test_url, files=files, data=data)
-        # try:
-        #     response = requests.post(test_url, files=files, data=data)
-        #     print(json.loads(response.text))
-        # except requests.exceptions.HTTPError as e:
-        #     print("Error: " + str(e))
+        #fire_and_forget(test_url, files=files, data=data)
+        try:
+            response = requests.post(test_url, files=files, data=data)
+            print(json.loads(response.text))
+        except requests.exceptions.HTTPError as e:
+            print("Error: " + str(e))
 
     # Show the image
     cv2.imshow('System',   im)

@@ -7,4 +7,3 @@ class RecognizeSerializer(serializers.ModelSerializer):
         model = Recognize
         fields = ('image', 'location', 'longitude',
                   'latitude', 'image_taken_time',)
-        #fields = '__all__'

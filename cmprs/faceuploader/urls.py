@@ -11,6 +11,8 @@ urlpatterns = [
          name='update_face_uploader'),
     path('delete/<pk>', views.delete_face_uploader,
          name='delete_face_uploader'),
+    path('track/<pk>', views.tracker,
+         name='track'),
 
 
 ]

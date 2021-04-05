@@ -46,9 +46,9 @@ class RecognizeUploadView(APIView):
             location = request.data.get('location')
             latitude = request.data.get('latitude')
             longitude = request.data.get('longitude')
-            current_time = request.data.get('current_time')
+            image_taken_time = request.data.get('image_taken_time')
             print(location, latitude)
-
+            print(image)
             img = face_recognition.load_image_file(image)
 
             unknown_face_encodings = face_recognition.face_encodings(img)

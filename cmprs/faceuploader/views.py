@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Face_image
+from recognizer.models import Recognize
 from .form import ImageForm
 from django.http import HttpResponse
 # from django.views.generic import DetailView, ListView, TemplateView, UpdateView, DeleteView, CreateView
@@ -68,36 +69,40 @@ def delete_face_uploader(request, pk):
     if face_image:
         face_image.delete()
     return redirect('faceuploader:index')
-# def index(request):
-#     return render(request, 'index.html',)
 
 
-# class FaceUplaodCreateView(CreateView):
-#     model = Face_image
-#     form_class = ImageForm
-#     template_name = 'faceuploader/faceuploder_create.html'
+def tracker(request, pk):
+    #list_reco_face = []
+    reco_face = Recognize.objects.filter(face_id=pk)
+    # for
+    # list_reco_face.append(Recognize.objects.get(face_id=pk))
+    print(reco_face)
+    return render(request, 'faceuploader/tracker.html', {'reco_face': reco_face})
+    # def index(request):
+    #     return render(request, 'index.html',)
 
-#     def form_valid(self, form):
-#         form.instance.created_by = self.request.user
-#         return super().form_valid(form)
+    # class FaceUplaodCreateView(CreateView):
+    #     model = Face_image
+    #     form_class = ImageForm
+    #     template_name = 'faceuploader/faceuploder_create.html'
 
+    #     def form_valid(self, form):
+    #         form.instance.created_by = self.request.user
+    #         return super().form_valid(form)
 
-# class FaceUplaodDetailView(DetailView):
-#     #context_object_name = 'school_details'
-#     model = Face_image
-#     template_name = 'basic_app/school_detail.html'
+    # class FaceUplaodDetailView(DetailView):
+    #     #context_object_name = 'school_details'
+    #     model = Face_image
+    #     template_name = 'basic_app/school_detail.html'
 
+    # class FaceUplaodCreateView(CreateView):
+    #     fields = ("name", "principal", "location")
+    #     model = Face_image
 
-# class FaceUplaodCreateView(CreateView):
-#     fields = ("name", "principal", "location")
-#     model = Face_image
+    # class FaceUplaodUpdateView(UpdateView):
+    #     fields = ("name", "principal")
+    #     model = Face_image
 
-
-# class FaceUplaodUpdateView(UpdateView):
-#     fields = ("name", "principal")
-#     model = Face_image
-
-
-# class FaceUplaodDeleteView(DeleteView):
-#     model = Face_image
-#     success_url = reverse_lazy("basic_app:list")
+    # class FaceUplaodDeleteView(DeleteView):
+    #     model = Face_image
+    #     success_url = reverse_lazy("basic_app:list")
