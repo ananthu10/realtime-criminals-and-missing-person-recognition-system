@@ -19,7 +19,8 @@ class Recognize(models.Model):
     )
 
     def __str__(self):
-        return self.image.name
+        return f"{self.face_id}-{self.image.name}"
+       # return f"{self.face_id}"
     # def save(self, *args, **kwargs):
     #     detected_img = Image.fromarray(orig)
     #     buffer = BytesIO()
