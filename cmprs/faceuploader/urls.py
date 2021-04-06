@@ -14,6 +14,8 @@ urlpatterns = [
          name='delete_face_uploader'),
     path('track/<pk>', views.tracker,
          name='track'),
+    path('map/', views.map,
+         name='map'),
 
 
 ]

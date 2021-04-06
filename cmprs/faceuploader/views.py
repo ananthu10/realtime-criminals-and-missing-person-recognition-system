@@ -4,6 +4,7 @@ from recognizer.models import Recognize
 from .form import ImageForm
 from django.http import HttpResponse
 # from django.views.generic import DetailView, ListView, TemplateView, UpdateView, DeleteView, CreateView
+import folium
 
 
 def face_uploader_index(request):
@@ -86,6 +87,33 @@ def tracker(request, pk):
     # list_reco_face.append(Recognize.objects.get(face_id=pk))
     print(reco_face)
     return render(request, 'faceuploader/tracker.html', {'reco_face': reco_face})
+
+
+# def map(request):
+#     #map = folium.Map(width=100, height=100, location=[45.5236, -122.6750])
+#     map = "hello"
+#     # map = map._repr_html_()
+#     context = {
+#         'map': map
+#     }
+#     return(request, 'faceuploader/map.html', map)
+def map(request):
+    #reco_face = Recognize.objects.all()
+    # for
+    # reco_face = folium.Map(width=100, height=100,
+    #                        location=[45.5236, -122.6750])
+    # reco_face._repr_html_()
+    # # list_reco_face.append(Recognize.objects.get(face_id=pk))
+    # print(reco_face)
+    m = folium.Map([51.5, -0.25], zoom_start=10)
+    test = folium.Html('<b>Hello world</b>', script=True)
+    popup = folium.Popup(test, max_width=2650)
+    folium.RegularPolygonMarker(location=[51.5, -0.25], popup=popup).add_to(m)
+    m = m._repr_html_()  # updated
+    context = {'reco_face': m}
+    print(m)
+    return render(request, 'faceuploader/map.html', context)
+
     # def index(request):
     #     return render(request, 'index.html',)
 
