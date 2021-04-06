@@ -1,6 +1,7 @@
 {% load static %}
 {% url 'faceuploader:monitor' as path_to_monitor %}
 {% url 'faceuploader:create_face_uploader' as path_to_uploader %}
+{% url 'faceuploader:index' as path_to_face_upload_index %}
 {% block scripts %}
     <script src="{% static 'script.js' %}" defer></script>
 {% endblock scripts %}
@@ -20,10 +21,10 @@
        <li class="nav-item ">
                     <a class="nav-link {% if request.path == path_to_uploader %}active{% endif %}" href="{{path_to_uploader}}"><i class="far fa-address-book"></i>Register</a>
                 </li>
-<!--               
+              
        <li class="nav-item">
-                    <a class="nav-link" href="{% url 'faceuploader:index'%}"><i class="far fa-clone"></i>View</a>
-                </li> -->
+                    <a class="nav-link {% if request.path == path_to_face_upload_index %}active{% endif %}" href="{{path_to_face_upload_index}}"><i class="far fa-clone"></i>View</a>
+                </li>
 
                 <!-- <li class="nav-item">
                     <a class="nav-link " href="#"><i class="far fa-calendar-alt"></i>Calendar</a>
