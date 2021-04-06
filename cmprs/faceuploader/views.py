@@ -71,6 +71,14 @@ def delete_face_uploader(request, pk):
     return redirect('faceuploader:index')
 
 
+def monitor(request):
+    reco_face = Recognize.objects.all()
+    # for
+    # list_reco_face.append(Recognize.objects.get(face_id=pk))
+    print(reco_face)
+    return render(request, 'faceuploader/monitor.html', {'reco_face': reco_face})
+
+
 def tracker(request, pk):
     #list_reco_face = []
     reco_face = Recognize.objects.filter(face_id=pk)

@@ -35,8 +35,12 @@ class RecognizeUploadView(APIView):
         for i in range(0, len(images)):
             images[i] = face_recognition.load_image_file(files[i])
             encodings[i] = face_recognition.face_encodings(images[i])[0]
+            print("####################")
+            print(type(encodings))
+            print("####################")
         NAME = "Unknown"
         known_face_encodings = encodings
+
         known_face_names = names
 
         file_serializer = RecognizeSerializer(data=request.data)

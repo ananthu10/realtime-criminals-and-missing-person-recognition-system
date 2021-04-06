@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+my profiles
+
+{% endblock title %}
+{% block content %}
+{% if confirm %}
+<!-- <div class="alert alert-info" role="alert">
+   A simple info alert with <a href="#" class="alert-link">Your profile has been updated</a>
+ </div> -->
+
+{% endif %}
+
+
+
+
+{% for prs in reco_face %}
+
+
+
+<li>
+   <!-- <div class="col-sm-4">
+     <div class="card m-2" >
+       <img src="{{prs.photo.url}}" alt="{{prs.name}}" class="card-img-top" height="200px"> 
+       <h3>{{prs.name}}</h3>
+     </div>
+   </div> -->
+ 
+   <div class="card text-center">
+     <div class="card-header">
+
+       <!-- <ul class="nav nav-tabs card-header-tabs">
+         <li class="nav-item">
+           <a class="nav-link active" href="#">Details</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link active" href="{% url 'faceuploader:detail_face_uploader' pk=prs.id %}">MoreDetails</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="{% url 'faceuploader:update_face_uploader' pk=prs.id %}">Update</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link " href="{% url 'faceuploader:delete_face_uploader' pk=prs.id %}">Deletes</a>
+         </li> -->
+       </ul>
+
+     </div>
+     <div class="card-body">
+       <div class="row">
+       <div class="col-sm-4">
+         <div class="card m-2" >
+           <img class="card-img-left" src="{{prs.image.url}}"alt="Card image cap">
+ 
+         </div>
+ 
+       </div>
+       <!-- <h5 class="card-title">Name:{{prs.name}}</h5>
+        <p class="card-text">CASE:{{prs.case}}</p>
+       <a href="#" class="btn btn-primary">Track</a> -->
+       <div class="col-sm-2">
+       <div class="card" style="width: 18rem;">
+         <ul class="list-group list-group-flush">
+           <li class="list-group-item">Name:{{prs.face_id}}</li>
+           <li class="list-group-item">location:{{prs.location}}</li>
+           
+         </ul>
+       </div>
+     </div>
+   </div>
+
+     </div>
+ 
+ 
+     
+   </div>
+ 
+ 
+   </li>
+
+
+
+{% endfor %}
+
+
+
+
+
+
+
+{% endblock content %}
