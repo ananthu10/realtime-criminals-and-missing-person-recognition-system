@@ -83,10 +83,15 @@ def monitor(request):
 def tracker(request, pk):
     #list_reco_face = []
     reco_face = Recognize.objects.filter(face_id=pk)
+    print(reco_face)
+    if reco_face.count() == 0:
+        confirm = True
+    else:
+        confirm = False
     # for
     # list_reco_face.append(Recognize.objects.get(face_id=pk))
-    print(reco_face)
-    return render(request, 'faceuploader/tracker.html', {'reco_face': reco_face})
+
+    return render(request, 'faceuploader/tracker.html', {'reco_face': reco_face, 'confirm': confirm})
 
 
 # def map(request):

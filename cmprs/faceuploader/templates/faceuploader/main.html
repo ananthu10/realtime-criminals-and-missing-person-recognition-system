@@ -25,7 +25,7 @@ my profiles
     </div>
   </div> -->
 
-  <div class="card text-center">
+  <div class="card text-center {% if prs.case == 'CRIMINAL' %}border-danger{% else %} border-primary{% endif%} ">
     <div class="card-header">
       <ul class="nav nav-tabs card-header-tabs">
         <li class="nav-item">
@@ -37,7 +37,8 @@ my profiles
         <li class="nav-item">
           <a class="nav-link" href="{% url 'faceuploader:update_face_uploader' pk=prs.id %}">Update</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item ">
+          
           <a class="nav-link " href="{% url 'faceuploader:delete_face_uploader' pk=prs.id %}">Deletes</a>
         </li>
       </ul>
@@ -58,7 +59,7 @@ my profiles
       <div class="card" style="width: 18rem;">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Name:{{prs.name}}</li>
-          <li class="list-group-item">Case:{{prs.Case}}</li>
+          <li class="list-group-item">Case:{{prs.case}}</li>
           
         </ul>
       </div>
