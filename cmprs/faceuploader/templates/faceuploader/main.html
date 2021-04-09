@@ -15,6 +15,20 @@ my profiles
 
 
 
+
+<div class="row">
+<div class="col">
+<div class="card card-body">
+  <form action="{%url 'faceuploader:index' %}"action="GET">
+{{myFilter.form}}
+    <button  class ="btn btn-primary" type="submit">Search</button>
+  </form>
+
+</div>
+</div>
+</div>
+
+
 {% for prs in face_images %}
 
 <li>

@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'recognizer',
     'faceuploader',
     'crispy_forms',
-
+    'django_filters'
     # 'crispy_forms'
 
 ]

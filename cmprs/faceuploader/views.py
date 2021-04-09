@@ -6,11 +6,22 @@ from django.http import HttpResponse
 # from django.views.generic import DetailView, ListView, TemplateView, UpdateView, DeleteView, CreateView
 import folium
 
+from .filters import OrderFilter
+
 
 def face_uploader_index(request):
+    print("#########showing rquest##########")
     face_images = Face_image.objects.all()
+    print(request.GET)
+    myFilter = OrderFilter(request.GET, queryset=face_images)
+    print("###################")
+    print(myFilter)
+    face_images = myFilter.qs
+    print("###################")
+    print(face_images)
     return render(request, 'faceuploader/main.html',   {
-        'face_images': face_images
+        'face_images': face_images,
+        'myFilter': myFilter,
     }
     )
 
@@ -81,7 +92,7 @@ def monitor(request):
 
 
 def tracker(request, pk):
-    #list_reco_face = []
+    # list_reco_face = []
     reco_face = Recognize.objects.filter(face_id=pk)
     print(reco_face)
     if reco_face.count() == 0:
@@ -103,7 +114,7 @@ def tracker(request, pk):
 #     }
 #     return(request, 'faceuploader/map.html', map)
 def map(request):
-    #reco_face = Recognize.objects.all()
+    # reco_face = Recognize.objects.all()
     # for
     # reco_face = folium.Map(width=100, height=100,
     #                        location=[45.5236, -122.6750])
