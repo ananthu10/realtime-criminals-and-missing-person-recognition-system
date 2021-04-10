@@ -18,7 +18,7 @@ my profiles
 
 <div class="row">
 <div class="col">
-<div class="card card-body">
+<div class="card card-body" >
   <form action="{%url 'faceuploader:index' %}"action="GET">
 {{myFilter.form}}
     <button  class ="btn btn-primary" type="submit">Search</button>
@@ -57,7 +57,8 @@ my profiles
         </li>
       </ul>
     </div>
-    <div class="card-body">
+
+    <div class="card-body " >
       <div class="row">
       <div class="col-sm-4">
         <div class="card m-2" >
@@ -71,10 +72,10 @@ my profiles
       <a href="#" class="btn btn-primary">Track</a> -->
       <div class="col-sm-2">
       <div class="card" style="width: 18rem;">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Name:{{prs.name}}</li>
-          <li class="list-group-item">Case:{{prs.case}}</li>
-          <li class="list-group-item">Case:{{prs.cdase}}</li>
+        <ul class="list-group list-group-flush d-flex">
+          <li class="list-group-item d-flex">Name:{{prs.name}}</li>
+          <li class="list-group-item d-flex">Case:{{prs.case}}</li>
+          <li class="list-group-item d-flex">Gender : {{prs.gender}}</li>
         </ul>
       </div>
     </div>
