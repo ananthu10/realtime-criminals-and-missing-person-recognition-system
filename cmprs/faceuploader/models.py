@@ -15,8 +15,8 @@ class Face_image(models.Model):
     updated = models.DateTimeField(auto_now=True)
     dob = models.DateField()
     GCHOICES = (
-        ('FEMALE', 'Female'),
         ('MALE', 'Male'),
+        ('FEMALE', 'Female'),
     )
     gender = models.CharField(choices=GCHOICES, max_length=20, default='none')
     case = models.CharField(choices=FCHOICES, max_length=20, default='Missing')

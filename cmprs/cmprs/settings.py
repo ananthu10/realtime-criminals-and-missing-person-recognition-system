@@ -25,7 +25,7 @@ SECRET_KEY = '!=$u2lxxje2k&ek32$e=!4^kwy4nuf_w#rn2^$^mow99=@v+l8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '192.168.0.22']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'faceuploader',
     'crispy_forms',
     'django_filters'
-    # 'crispy_forms'
+
 
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -139,7 +139,8 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
+#LOGIN_REDIRECT_URL="/"
+LOGIN_URL='/login/'
 
 # STATIC_URL = '/static/'
 # STATICFILES_DIRS=[
