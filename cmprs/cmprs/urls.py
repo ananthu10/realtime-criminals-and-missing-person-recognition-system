@@ -18,10 +18,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from faceuploader import views
+from .views import login_view, logout_view
+
 urlpatterns = [
     path('', include('faceuploader.urls')),
+    path('login/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('recognizer.urls')),
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
 
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
