@@ -19,9 +19,9 @@ model = dirname+"\model\haarcascade_frontalface_alt.xml"
 # face_route = os.path.join(BASE_DIR, "/CMPRS/unknowfaces")
 face_route = dirname+"\\unknowfaces"
 print(face_route)
-webcam = cv2.VideoCapture("rtsp://192.168.0.11:8080/h264_ulaw.sdp")
+webcam = cv2.VideoCapture(0)
 # addr = 'http://127.0.0.1:8000/'
-addr = 'http://192.168.0.22:8000/'
+addr = 'http://192.168.43.8:8000/'
 test_url = addr + 'api/test/'
 
 # classifier = cv2.CascadeClassifier("rtsp://192.168.0.11:8080/h264_ulaw.sdp")
@@ -49,7 +49,7 @@ while True:
     mini = cv2.resize(im, (int(im.shape[1] / size), int(im.shape[0] / size)))
 
     faces = classifier.detectMultiScale(mini)
-    location = "aluva"
+    location = "kodungallur"
     longitude = 76.1971
 
     latitude = 10.227

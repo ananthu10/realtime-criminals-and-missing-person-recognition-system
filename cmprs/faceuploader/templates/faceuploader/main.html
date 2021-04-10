@@ -12,7 +12,23 @@ my profiles
 
 {% endif %}
 
+<style>
 
+
+
+      body {
+        background:#20254E;
+
+        margin: 0;
+        font-size: 14px;
+<!--        color: #fffafa;-->
+        line-height: 22px;
+
+
+
+
+
+      </style>
 
 
 
@@ -38,9 +54,10 @@ my profiles
       <h3>{{prs.name}}</h3>
     </div>
   </div> -->
+<!--<div class="p-3 mb-2 bg-primary text-white">.bg-primary</div>-->
+  <div style="border-radius: 2%" class="card text-center p-3 mb-2 bg-dark text-dark{% if prs.case == 'CRIMINAL' %}border-danger{% else %} border-primary{% endif%} ">
 
-  <div class="card text-center {% if prs.case == 'CRIMINAL' %}border-danger{% else %} border-primary{% endif%} ">
-    <div class="card-header">
+    <div class="card-header ">
       <ul class="nav nav-tabs card-header-tabs">
         <li class="nav-item">
           <a class="nav-link active" href="#">Details</a>
@@ -71,9 +88,11 @@ my profiles
       <a href="#" class="btn btn-primary">Track</a> -->
       <div class="col-sm-2">
       <div class="card" style="width: 18rem;">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Name:{{prs.name}}</li>
-          <li class="list-group-item">Case:{{prs.case}}</li>
+        <ul class="list-group list-group-flush list-group-item list-group-item-primary">
+          <li class="list-group-item">Name : {{prs.name}}</li>
+          <li class="list-group-item">Gender : {{prs.gender}}</li>
+          <li class="list-group-item">Case : {{prs.case}}</li>
+
           
         </ul>
       </div>
