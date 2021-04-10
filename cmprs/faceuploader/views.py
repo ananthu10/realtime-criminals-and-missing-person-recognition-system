@@ -113,7 +113,7 @@ def tracker(request, pk):
 #         'map': map
 #     }
 #     return(request, 'faceuploader/map.html', map)
-def map(request):
+def map(request, pk):
     # reco_face = Recognize.objects.all()
     # for
     # reco_face = folium.Map(width=100, height=100,
@@ -121,13 +121,22 @@ def map(request):
     # reco_face._repr_html_()
     # # list_reco_face.append(Recognize.objects.get(face_id=pk))
     # print(reco_face)
-    m = folium.Map([51.5, -0.25], zoom_start=10)
-    test = folium.Html('<b>Hello world</b>', script=True)
-    popup = folium.Popup(test, max_width=2650)
-    folium.RegularPolygonMarker(location=[51.5, -0.25], popup=popup).add_to(m)
+    map_rec = Recognize.objects.filter(face_id=pk)
+
+    print(map_rec[0].location)
+    print(type(map_rec[0].location))
+    m = folium.Map([map_rec[0].latitude, map_rec[0].longitude], zoom_start=10)
+    for map_r in map_rec:
+        # str1 = "<b>time:</b>"
+        # test = folium.Html('<b>time:</b>', script=True)
+        # popup = folium.Popup(test, max_width=2650)
+        folium.Marker(
+            location=[map_r.latitude, map_r.longitude], popup=f"time:{map_r.image_taken_time}").add_to(m)
+        m.add_child(folium.ClickForMarker(
+            popup=f"time:{map_r.image_taken_time}"))
     m = m._repr_html_()  # updated
     context = {'reco_face': m}
-    print(m)
+    # print(m)
     return render(request, 'faceuploader/map.html', context)
 
     # def index(request):
