@@ -122,20 +122,23 @@ def map(request, pk):
     # # list_reco_face.append(Recognize.objects.get(face_id=pk))
     # print(reco_face)
     map_rec = Recognize.objects.filter(face_id=pk)
-
-    print(map_rec[0].location)
-    print(type(map_rec[0].location))
-    m = folium.Map([map_rec[0].latitude, map_rec[0].longitude], zoom_start=10)
-    for map_r in map_rec:
-        # str1 = "<b>time:</b>"
-        # test = folium.Html('<b>time:</b>', script=True)
-        # popup = folium.Popup(test, max_width=2650)
-        folium.Marker(
-            location=[map_r.latitude, map_r.longitude], popup=f"time:{map_r.image_taken_time}").add_to(m)
-        m.add_child(folium.ClickForMarker(
-            popup=f"time:{map_r.image_taken_time}"))
-    m = m._repr_html_()  # updated
-    context = {'reco_face': m}
+    check = False
+    m = None
+    if map_rec.count() == 0:
+        check = True
+    else:
+        m = folium.Map(
+            [map_rec[0].latitude, map_rec[0].longitude], zoom_start=10)
+        for map_r in map_rec:
+            # str1 = "<b>time:</b>"
+            # test = folium.Html('<b>time:</b>', script=True)
+            # popup = folium.Popup(test, max_width=2650)
+            folium.Marker(
+                location=[map_r.latitude, map_r.longitude], popup=f"time:{map_r.image_taken_time}").add_to(m)
+            m.add_child(folium.ClickForMarker(
+                popup=f"time:{map_r.image_taken_time}"))
+        m = m._repr_html_()  # updated
+    context = {'reco_face': m, 'check': check}
     # print(m)
     return render(request, 'faceuploader/map.html', context)
 

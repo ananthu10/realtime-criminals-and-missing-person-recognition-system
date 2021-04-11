@@ -5,5 +5,12 @@
 
 {% endblock title%}
 {% block content%}
-{{reco_face|safe}}
+{% if check %}
+<div class="alert alert-info" role="alert">
+   There is no records
+ </div>
+ {% else %}
+ {{reco_face|safe}}
+{% endif %}
+
 {% endblock %}
