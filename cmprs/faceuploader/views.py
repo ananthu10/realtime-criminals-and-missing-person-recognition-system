@@ -122,8 +122,10 @@ def map(request, pk):
     # # list_reco_face.append(Recognize.objects.get(face_id=pk))
     # print(reco_face)
     map_rec = Recognize.objects.filter(face_id=pk)
+    upload_rec=Face_image.objects.get(id=pk)
     check = False
     m = None
+    case_colour=None
     if map_rec.count() == 0:
         check = True
     else:
@@ -133,12 +135,17 @@ def map(request, pk):
             # str1 = "<b>time:</b>"
             # test = folium.Html('<b>time:</b>', script=True)
             # popup = folium.Popup(test, max_width=2650)
+            map_r
+            if upload_rec.case=='MISSING':
+                case_colour='blue'
+            else:
+                case_colour='red'    
             folium.Marker(
-                location=[map_r.latitude, map_r.longitude], popup=f"time:{map_r.image_taken_time}").add_to(m)
+                location=[map_r.latitude, map_r.longitude], popup=f"time:{map_r.image_taken_time}"  ,icon=folium.Icon(color=case_colour, icon="info-sign") ).add_to(m)
             m.add_child(folium.ClickForMarker(
                 popup=f"time:{map_r.image_taken_time}"))
         m = m._repr_html_()  # updated
-    context = {'reco_face': m, 'check': check}
+    context = {'reco_face': m, 'check': check} 
     # print(m)
     return render(request, 'faceuploader/map.html', context)
 
