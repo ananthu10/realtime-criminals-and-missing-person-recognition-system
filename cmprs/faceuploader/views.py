@@ -3,12 +3,16 @@ from .models import Face_image
 from recognizer.models import Recognize
 from .form import ImageForm
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+
+
 # from django.views.generic import DetailView, ListView, TemplateView, UpdateView, DeleteView, CreateView
 import folium
 
 from .filters import OrderFilter
 
 
+@login_required
 def face_uploader_index(request):
     print("#########showing rquest##########")
     face_images = Face_image.objects.all()
@@ -36,6 +40,7 @@ def face_uploader_index(request):
 #     return render(request, 'faceuploader/create_face_uploader.html', {'img': img, 'form': form})
 
 
+@login_required
 def create_face_uploader(request):
     if request.method == 'POST':
         face_uploader_form = ImageForm(request.POST, request.FILES)
@@ -53,11 +58,13 @@ def create_face_uploader(request):
         })
 
 
+@login_required
 def detail_face_uploader(request, pk):
     face_image = get_object_or_404(Face_image, pk=pk)
     return render(request, 'faceuploader/detail_face_uploader.html', {'face_image': face_image})
 
 
+@login_required
 def update_face_uploader(request, pk):
     face_image = get_object_or_404(Face_image, pk=pk)
     if request.method == "POST":
@@ -76,6 +83,7 @@ def update_face_uploader(request, pk):
     )
 
 
+@login_required
 def delete_face_uploader(request, pk):
     face_image = get_object_or_404(Face_image, pk=pk)
     if face_image:
@@ -83,6 +91,7 @@ def delete_face_uploader(request, pk):
     return redirect('faceuploader:index')
 
 
+@login_required
 def monitor(request):
     reco_face = Recognize.objects.all()
     # for
@@ -91,6 +100,7 @@ def monitor(request):
     return render(request, 'faceuploader/monitor.html', {'reco_face': reco_face})
 
 
+@login_required
 def tracker(request, pk):
     # list_reco_face = []
     reco_face = Recognize.objects.filter(face_id=pk)
@@ -113,6 +123,8 @@ def tracker(request, pk):
 #         'map': map
 #     }
 #     return(request, 'faceuploader/map.html', map)
+
+@login_required
 def map(request, pk):
     # reco_face = Recognize.objects.all()
     # for

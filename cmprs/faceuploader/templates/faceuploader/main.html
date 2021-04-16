@@ -13,7 +13,13 @@ my profiles
 {% endif %}
 
 
+<style>
 
+.list-group-item  {
+  background-color: #1f2668;
+color:#03e9f4
+}
+</style>
 
 
 <div class="row">
@@ -72,11 +78,18 @@ my profiles
       <a href="#" class="btn btn-primary">Track</a> -->
       <div class="col-sm-2">
       <div class="card" style="width: 18rem;">
+
+
+
+        
         <ul class="list-group list-group-flush d-flex">
-          <li class="list-group-item d-flex">Name:{{prs.name}}</li>
+          <li class="list-group-item d-flex">Name:{{prs.name|upper}}</li>
           <li class="list-group-item d-flex">Case:{{prs.case}}</li>
           <li class="list-group-item d-flex">Gender : {{prs.gender}}</li>
         </ul>
+
+
+
       </div>
     </div>
   </div>
