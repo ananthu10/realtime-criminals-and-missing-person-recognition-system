@@ -70,8 +70,11 @@ my profiles
        <div class="col-sm-2">
        <div class="card" style="width: 18rem;">
          <ul class="list-group list-group-flush">
-           <li class="list-group-item">Name:{{prs.face_id}}</li>
-           <li class="list-group-item">location:{{prs.location}}</li>
+          <li class="list-group-item d-flex">Name:{{prs.face_id|upper}}</li>
+          <li class="list-group-item d-flex">location:{{prs.location}}</li>
+          <li class="list-group-item d-flex">location:{{prs.latitude}}</li>
+          <li class="list-group-item d-flex">longitude:{{prs.longitude}}</li>
+          <li class="list-group-item d-flex">created:{{prs.created}}</li>
            
          </ul>
        </div>
