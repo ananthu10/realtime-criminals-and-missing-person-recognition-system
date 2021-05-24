@@ -13,10 +13,10 @@ model = dirname+"\model\haarcascade_frontalface_alt.xml"
 face_route = dirname+"\\unknowfaces"
 print(face_route)
 webcam = cv2.VideoCapture("rtsp://192.168.0.10:8080/h264_ulaw.sdp")
-# addr = 'http://127.0.0.1:8000/'
+# addr = 'http://127.0.0.1:8000/api/test/'
 addr = 'http://192.168.0.22:8000/'
 test_url = addr + 'api/test/'
-# http://192.168.0.22:8000/api/test/
+#
 # classifier = cv2.CascadeClassifier("rtsp://192.168.0.11:8080/h264_ulaw.sdp")
 classifier = cv2.CascadeClassifier(model)
 

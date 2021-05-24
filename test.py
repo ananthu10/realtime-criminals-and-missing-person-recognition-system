@@ -1,12 +1,106 @@
-import BaseHTTPServer
-import SimpleHTTPServer
-import ssl
 
-httpd = BaseHTTPServer.HTTPServer(
-    ('localhost', 4443), SimpleHTTPServer.SimpleHTTPRequestHandler)
-httpd.socket = ssl.wrap_socket(
-    httpd.socket, certfile='./server.pem', server_side=True)
-httpd.serve_forever()
+# import sys
+# import getopt
+
+from datetime import datetime
+import threading
+import json
+import requests
+import cv2
+from pathlib import Path
+import os
+import sys
+
+webcamIP = sys.argv[1]
+send_url = sys.argv[2]
+location = sys.argv[3]
+latitude1 = sys.argv[4]
+longitude1 = sys.argv[5]
+
+
+size = 6
+dirname, filename = os.path.split(os.path.abspath(__file__))
+model = dirname+"\model\haarcascade_frontalface_alt.xml"
+face_route = dirname+"\\unknowfaces"
+print(face_route)
+webcam = cv2.VideoCapture(webcamIP)
+# addr = 'http://127.0.0.1:8000/'
+location = location
+longitude = float(longitude1)
+latitude = float(latitude1)
+
+test_url = send_url
+# http://192.168.0.22:8000/api/test/
+# classifier = cv2.CascadeClassifier("rtsp://192.168.0.11:8080/h264_ulaw.sdp")
+classifier = cv2.CascadeClassifier(model)
+
+
+def request_task(url, files, data):
+    try:
+        response = requests.post(test_url, files=files, data=data)
+        print(json.loads(response.text))
+    except requests.exceptions.HTTPError as e:
+        print("Error: " + str(e))
+
+
+def fire_and_forget(url, files, data):
+    threading.Thread(target=request_task, args=(test_url, files, data)).start()
+
+
+while True:
+    (rval, im) = webcam.read()
+    im = cv2.flip(im, 1, 0)  # Flip to act as a mirror
+
+    # Resize the image to speed up detection
+    mini = cv2.resize(im, (int(im.shape[1] / size), int(im.shape[0] / size)))
+
+    faces = classifier.detectMultiScale(mini)
+
+    for f in faces:
+        (x, y, w, h) = [v * size for v in f]  # Scale the shapesize backup
+        cv2.rectangle(im, (x, y), (x + w, y + h), (0, 255, 0), thickness=4)
+        # Save just the rectangle faces in SubRecFaces
+        sub_face = im[y:y+h, x:x+w]
+        FaceFileName = face_route+"\\face_" + str(y) + ".jpg"
+        cv2.imwrite(FaceFileName, sub_face)
+
+        image_taken_time = datetime.now()
+
+        files = {'image': open(FaceFileName, 'rb')}
+        print("##################")
+        print(files)
+        data = {"location": location,
+                "latitude": latitude, "longitude": longitude, "image_taken_time": image_taken_time}
+
+        fire_and_forget(test_url, files=files, data=data)
+
+    cv2.imshow('System',   im)
+    key = cv2.waitKey(10)
+    # if Esc key is press then break out of the loop
+    if key == 27:
+        break
+
+
+# secondarg = sys.argv[2]
+# thirdarg = sys.argv[3]
+# print(firstarg, secondarg, thirdarg)
+# while True:
+#     print("script"+webcamIP, send_url, location, latitude, longitude)
+
+
+# while True:
+#     print("script"+webcamIP)
+
+# sys.exit()
+# import BaseHTTPServer
+# import SimpleHTTPServer
+# import ssl
+
+# httpd = BaseHTTPServer.HTTPServer(
+#     ('localhost', 4443), SimpleHTTPServer.SimpleHTTPRequestHandler)
+# httpd.socket = ssl.wrap_socket(
+#     httpd.socket, certfile='./server.pem', server_side=True)
+# httpd.serve_forever()
 
 
 # import os
