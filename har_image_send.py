@@ -19,11 +19,11 @@ model = dirname+"\model\haarcascade_frontalface_alt.xml"
 # face_route = os.path.join(BASE_DIR, "/CMPRS/unknowfaces")
 face_route = dirname+"\\unknowfaces"
 print(face_route)
-webcam = cv2.VideoCapture("rtsp://192.168.0.11:8080/h264_ulaw.sdp")
+webcam = cv2.VideoCapture("rtsp://192.168.0.10:8080/h264_ulaw.sdp")
 # addr = 'http://127.0.0.1:8000/'
 addr = 'http://192.168.0.22:8000/'
 test_url = addr + 'api/test/'
-
+# http://192.168.0.22:8000/api/test/
 # classifier = cv2.CascadeClassifier("rtsp://192.168.0.11:8080/h264_ulaw.sdp")
 
 classifier = cv2.CascadeClassifier(model)
@@ -64,21 +64,21 @@ while True:
         # now = datetime.now()
         # image_taken_time = now.strftime("%H:%M:%S")
         image_taken_time = datetime.now()
-        print("##################")
-        print(image_taken_time)
-        print("##################")
+        # print("##################")
+        # print(image_taken_time)
+        # print("##################")
         files = {'image': open(FaceFileName, 'rb')}
         print("##################")
         print(files)
         data = {"location": location,
                 "latitude": latitude, "longitude": longitude, "image_taken_time": image_taken_time}
 
-        #fire_and_forget(test_url, files=files, data=data)
-        try:
-            response = requests.post(test_url, files=files, data=data)
-            print(json.loads(response.text))
-        except requests.exceptions.HTTPError as e:
-            print("Error: " + str(e))
+        fire_and_forget(test_url, files=files, data=data)
+        # try:
+        #     response = requests.post(test_url, files=files, data=data)
+        #     print(json.loads(response.text))
+        # except requests.exceptions.HTTPError as e:
+        #     print("Error: " + str(e))
 
     # Show the image
     cv2.imshow('System',   im)

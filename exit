@@ -1,0 +1,132 @@
+[33mcommit 16bd3342ebc37682578064474e0d13ca996eb21f[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Mon Apr 5 23:23:34 2021 +0530
+
+    added tracker
+
+[33mcommit c4c06a90ac2e061f3519938fe28ec37f13658d1c[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Mon Apr 5 20:19:18 2021 +0530
+
+    added
+
+[33mcommit bd1e57de8f95ceab2b36740e758bfce13fdbeb86[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Mon Apr 5 17:40:11 2021 +0530
+
+    create bug fix forget to add enctype=multipart/form-data
+
+[33mcommit 245ba5e85d2c15aadded55af37c07904cb80b524[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Mon Apr 5 16:29:50 2021 +0530
+
+    added update ,create,delete ,detail,template partialy compleated
+
+[33mcommit 47229f00102112e1cbe5b1cb8174f0522b6dbfb7[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Sat Apr 3 10:42:32 2021 +0530
+
+    ok
+
+[33mcommit 6064d18fc7eb97ca8a434e047d9832fae7490475[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Wed Mar 31 15:28:58 2021 +0530
+
+    all
+
+[33mcommit e463bbcd6797033687d097be0e03a8742ccc5877[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Tue Mar 30 20:29:03 2021 +0530
+
+    multi threaded post request (fire and forget post request ) added
+
+[33mcommit 8b5b17d6f0b902717aad6c2ad03bad992e22388f[m
+Merge: f8023f2 805d192
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Sat Mar 27 21:54:44 2021 +0530
+
+    Merge branch 'main' of https://github.com/ananthu10/realtime-criminals-and-missing-person-recognition-system into main
+
+[33mcommit 805d192f2d34b9f58ab81535f8184bc658aa2349[m
+Author: ANANTHU M A <ananthuma99@gmail.com>
+Date:   Sat Mar 27 21:53:53 2021 +0530
+
+    delteing bcz i need to push
+
+[33mcommit f8023f2c6206af3a23a38dabd9c50ebb14019bd5[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Sat Mar 27 21:47:07 2021 +0530
+
+    changed attribute filed of image to image field added object of face rec to recognize
+
+[33mcommit b87633d67e91dd2144b9dc058d7972209de58e9f[m
+Author: ANANTHU M A <ananthuma99@gmail.com>
+Date:   Sat Mar 27 12:12:27 2021 +0530
+
+    Update Untitled Diagram.drawio
+
+[33mcommit ea2382617b30abff43d97fab7cf8132fc3ad3434[m
+Author: ANANTHU M A <ananthuma99@gmail.com>
+Date:   Sat Mar 27 11:20:29 2021 +0530
+
+    Added Untitled Diagram.drawio
+
+[33mcommit 1c8239c1db26c5f6af448e33af1c0bd947e57ab7[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Sat Mar 27 11:14:40 2021 +0530
+
+    face recogntion and lcation tracking working
+
+[33mcommit 13c446cf6bb338bf9797dfdaf28fee2f8bc27231[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Fri Mar 26 23:13:58 2021 +0530
+
+    added time ,location in json ,added new attributes location,lat,lon,current_time
+
+[33mcommit 3bd7a2555359aeff77dec23aabba2698b61e879b[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Fri Mar 26 22:22:30 2021 +0530
+
+    face name added to html
+
+[33mcommit 78cc53b106174797049c2e3affc7ac0146297162[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Thu Mar 25 20:51:26 2021 +0530
+
+    facerecognition itration added multiple face and name recognition
+
+[33mcommit b4f3e93c5d9f99b2bb1c374a8c90584b5783c698[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Thu Mar 25 19:17:16 2021 +0530
+
+    facerecognition itration added
+
+[33mcommit 8a473f2de7d76170b59d6a83e96d44cceb2418ed[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Thu Mar 25 10:30:57 2021 +0530
+
+    path migration solved
+
+[33mcommit cf7593e8c029d63536aa9aa6e36857b122f73f0f[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Wed Mar 24 21:48:09 2021 +0530
+
+    added faceuploader
+
+[33mcommit 7681bfb614af27613d45be6bfc7f4819d2485acc[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Mon Mar 22 22:14:37 2021 +0530
+
+    modified added harcased face detection
+
+[33mcommit be0a7231162f6704fe000c9920b774ef9302bc54[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Wed Feb 3 14:18:52 2021 +0530
+
+    added djngo image upload,and camera client side face detectio'
+
+[33mcommit 1431b331d92706e7082c23ae57048766267f019b[m
+Author: ananthu10 <ananthuma99@gmail.com>
+Date:   Wed Feb 3 11:50:40 2021 +0530
+
+    first commit
