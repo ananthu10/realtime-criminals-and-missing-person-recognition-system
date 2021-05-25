@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+video
+
+{% endblock title %}
+{% block content %}
+{% if confirm %}
+<!-- <div class="alert alert-info" role="alert">
+   A simple info alert with <a href="#" class="alert-link">Your profile has been updated</a>
+ </div> -->
+
+{% endif %}
+
+
+<style>
+
+.list-group-item  {
+  background-color: #1f2668;
+color:#03e9f4
+}
+</style>
+
+
+<div class="container">
+  <a class='btn btn-primary' href="{% url 'videoreco:create_video_uploader'%}">Analyze</a>
+
+</div>
+
+
+{% for video_file in video_files %}
+
+<li>
+  <!-- <div class="col-sm-4">
+    <div class="card m-2" >
+      <img src="{{prs.photo.url}}" alt="{{prs.name}}" class="card-img-top" height="200px"> 
+      <h3>{{prs.name}}</h3>
+    </div>
+  </div> -->
+
+  <div class="card text-center border-primary">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Details</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'videoreco:detail_video_uploader' pk=video_file.id %}">View </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'videoreco:update_video_uploader' pk=video_file.id %}">Update</a>
+        </li>
+        <li class="nav-item ">
+          
+          <a class="nav-link " href="{% url 'videoreco:delete_video_uploader' pk=video_file.id %}">Deletes</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-body " >
+      <div class="row">
+      <div class="col-sm-4">
+        <div class="card m-2" >
+          <video width="320" height="240" controls>
+            <source src="{{video_file.video.url}}" type="video/mp4">
+           
+          
+          </video>
+
+        </div>
+
+      </div>
+      <!-- <h5 class="card-title">Name:{{video_file}}</h5>
+       <p class="card-text">CASE:{{video_file.}}</p>
+      <a href="#" class="btn btn-primary">Track</a> -->
+      <div class="col-sm-2">
+      <div class="card" style="width: 18rem;">
+
+
+
+        
+        <ul class="list-group list-group-flush d-flex">
+          <li class="list-group-item d-flex">Name:</li>
+  
+        </ul>
+
+
+
+      </div>
+    </div>
+  </div>
+   
+    </div>
+
+
+    
+  </div>
+
+
+  </li>
+
+      
+
+
+
+
+
+
+
+{% endfor %}
+
+
+
+
+
+
+
+{% endblock content %}

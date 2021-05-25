@@ -2,6 +2,8 @@
 {% url 'faceuploader:monitor' as path_to_monitor %}
 {% url 'faceuploader:create_face_uploader' as path_to_uploader %}
 {% url 'faceuploader:index' as path_to_face_upload_index %}
+{% url 'videoreco:index' as path_to_video_uploader %}
+{% url 'videoreco:create_video_uploader' as path_to_video_uploader2 %}
 {% url 'logout' as path_to_logout %}
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -42,8 +44,19 @@
 
 
                 <li class="nav-item pl-5">
+                    <a class="nav-link {% if request.path == path_to_video_uploader %}active{% endif %}" href="{{path_to_video_uploader}}"><i class="far fa-clone"></i>Video index</a>
+                </li>
+                
+                <li class="nav-item pl-5">
+                    <a class="nav-link {% if request.path == path_to_video_uploader %}active{% endif %}" href="{{path_to_video_uploader2}}"><i class="far fa-clone"></i>Video Register</a>
+                </li>
+                <li class="nav-item pl-5">
                     <a class="nav-link {% if request.path == path_to_logout %}active{% endif %}" href="{{path_to_logout}}"><i class="far fa-clone"></i>Logout</a>
                 </li>
+
+
+
+
                 <!-- <li class="nav-item">
                     <a class="nav-link " href="#"><i class="far fa-calendar-alt"></i>Calendar</a>
                 </li>

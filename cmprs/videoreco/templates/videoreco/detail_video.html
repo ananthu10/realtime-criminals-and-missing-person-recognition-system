@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+video
+
+{% endblock title %}
+{% block content %}
+
+
+
+<div class="jumbotron">
+  <h1>DATA</h1>
+
+  <style>
+
+    .list-group-item  {
+      background-color: #1f2668;
+    color:#03e9f4
+    }
+    </style>
+    
+
+
+<li>
+
+ <div style="border-radius: 2%" class="card text-center p-3 mb-2 bg-dark text-dark{% if prs.case == 'CRIMINAL' %}border-danger{% else %} border-primary{% endif%} ">
+   <div class="card-header ">
+     </ul>
+   </div>
+
+   <div class="card-body">
+     <div class="row">
+     <div class="col-sm-4">
+      <video width="320" height="240" controls>
+        <source src="{{video_file.video.url}}" type="video/mp4">
+       
+      
+      </video>
+     </div>
+
+     <div class="col-sm-4">
+     <div class="card m-2" style="width: 24rem;">
+
+       <ul class="list-group list-group-flush list-group-item list-group-item-primary">
+           <li class="list-group-item d-flex ">ID Number :</li>
+    
+     </div>
+   </div>
+ </div>
+ <div class="container">
+  <a class='btn btn-primary' href="{% url 'videoreco:update_video_uploader' pk=video_file.id %}">Update</a>
+  <a class='btn btn-danger' href="{% url 'videoreco:delete_video_uploader' pk=video_file.id %}">Delete</a>
+</div>
+
+   </div>
+ </div>
+
+
+
+
+ 
+{% endblock content %}

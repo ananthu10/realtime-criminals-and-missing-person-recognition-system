@@ -22,6 +22,7 @@ from .views import login_view, logout_view
 
 urlpatterns = [
     path('', include('faceuploader.urls')),
+    path('video/', include('videoreco.urls')),
     path('login/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('recognizer.urls')),

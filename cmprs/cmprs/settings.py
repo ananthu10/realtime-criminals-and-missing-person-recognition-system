@@ -25,7 +25,7 @@ SECRET_KEY = '!=$u2lxxje2k&ek32$e=!4^kwy4nuf_w#rn2^$^mow99=@v+l8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.22','192.168.43.8']
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.22', '192.168.43.8']
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'recognizer',
     'faceuploader',
+    'videoreco',
     'crispy_forms',
     'django_filters'
     # 'crispy_forms'
