@@ -27,4 +27,7 @@ class Face_image(models.Model):
     description = models.TextField(max_length=200, default='no data')
 
     def __str__(self):
-        return f"{self.name}-{self.id}"
+        return f"{self.id}"
+
+    # def __str__(self):
+    #     return f"{self.name}-{self.id}"

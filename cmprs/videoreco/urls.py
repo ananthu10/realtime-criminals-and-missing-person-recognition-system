@@ -5,7 +5,7 @@ urlpatterns = [
     path('index/', views.video_uploader_index, name='index'),
     path('create/', views.create_video_uploader,
          name='create_video_uploader'),
-    path('detail/<pk>', views.detail_video_anlyser,
+    path('detail/<pk>', views.detail_video_uploader,
          name='detail_video_uploader'),
     path('update/<pk>', views.update_video,
          name='update_video_uploader'),
