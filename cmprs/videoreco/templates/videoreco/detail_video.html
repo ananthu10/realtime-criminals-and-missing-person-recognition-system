@@ -39,10 +39,15 @@ video
      </div>
 
      <div class="col-sm-4">
-     <div class="card m-2" style="width: 24rem;">
+     <div class="card m-2" style="width: 30rem;">
 
        <ul class="list-group list-group-flush list-group-item list-group-item-primary">
-           <li class="list-group-item d-flex ">ID Number :</li>
+        <li class="list-group-item d-flex">Case Name: {{video_file.case_name|upper}}</li>
+        <li class="list-group-item d-flex">Footage Name: {{video_file.video}}</li>
+        <li class="list-group-item d-flex">video Taken locaion: {{video_file.v_location}}</li>
+        <li class="list-group-item d-flex">Case Detail: {{video_file.case_details}}</li>
+        <li class="list-group-item d-flex">Video taken time: {{video_file.start_time}}</li>
+        <li class="list-group-item d-flex">Video end time: {{video_file.end_time}}</li>
     
      </div>
    </div>

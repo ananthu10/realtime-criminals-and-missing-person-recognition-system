@@ -74,13 +74,16 @@ color:#03e9f4
        <p class="card-text">CASE:{{video_file.}}</p>
       <a href="#" class="btn btn-primary">Track</a> -->
       <div class="col-sm-2">
-      <div class="card" style="width: 18rem;">
+      <div class="card" style="width: 25rem;">
 
 
 
         
         <ul class="list-group list-group-flush d-flex">
-          <li class="list-group-item d-flex">Name:</li>
+          <li class="list-group-item d-flex">Case Name: {{video_file.case_name|upper}}</li>
+          <li class="list-group-item d-flex">Case Detail: {{video_file.case_details}}</li>
+          <li class="list-group-item d-flex">Video taken time: {{video_file.start_time}}</li>
+          <li class="list-group-item d-flex">Video end time: {{video_file.end_time}}</li>
   
         </ul>
 

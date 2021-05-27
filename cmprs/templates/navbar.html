@@ -36,20 +36,18 @@
        <li class="nav-item ">
                     <a class="nav-link {% if request.path == path_to_uploader %}active{% endif %}" href="{{path_to_uploader}}"><i class="far fa-address-book"></i>Register</a>
                 </li>
-              
 
        <li class="nav-item ">
                     <a class="nav-link {% if request.path == path_to_face_upload_index %}active{% endif %}" href="{{path_to_face_upload_index}}"><i class="far fa-clone"></i>View</a>
                 </li>
 
-
-                <li class="nav-item pl-5">
+                <li class="nav-item">
                     <a class="nav-link {% if request.path == path_to_video_uploader %}active{% endif %}" href="{{path_to_video_uploader}}"><i class="far fa-clone"></i>Video index</a>
                 </li>
-                
-                <li class="nav-item pl-5">
+            
+                <!-- <li class="nav-item pl-5">
                     <a class="nav-link {% if request.path == path_to_video_uploader %}active{% endif %}" href="{{path_to_video_uploader2}}"><i class="far fa-clone"></i>Video Register</a>
-                </li>
+                </li> -->
                 <li class="nav-item pl-5">
                     <a class="nav-link {% if request.path == path_to_logout %}active{% endif %}" href="{{path_to_logout}}"><i class="far fa-clone"></i>Logout</a>
                 </li>

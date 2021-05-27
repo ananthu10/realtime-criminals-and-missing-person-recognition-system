@@ -5,13 +5,25 @@ import face_recognition
 import cv2
 import os
 
+from datetime import datetime, timedelta
+
+
+def default_start_time():
+    now = datetime.now()
+    start = now.replace(hour=22, minute=0, second=0, microsecond=0)
+    return start if start > now else start + timedelta(days=1)
+
 
 class Video_File(models.Model):
-    name = models.CharField(max_length=30)
+    case_name = models.CharField(max_length=30)
     video = models.FileField(upload_to="video_file")
+    v_location = models.CharField(max_length=30, default='No location given')
+    case_details = models.TextField(
+        max_length=60, default="No case data givem")
+    start_time = models.DateTimeField(default=default_start_time)
+    end_time = models.DateTimeField(default=default_start_time)
 
     def save(self, *args, **kwargs):
-
         super().save(*args, **kwargs)  # Call the "real" save() method.
         video_anlyser(self)
 
