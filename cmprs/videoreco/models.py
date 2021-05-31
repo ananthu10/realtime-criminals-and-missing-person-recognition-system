@@ -50,7 +50,7 @@ class Person(models.Model):
 dirname, filename = os.path.split(os.path.abspath(__file__))
 model1 = dirname+"\model\haarcascade_frontalface_alt.xml"
 model2 = "f:\project-final\CMPRS\model\haarcascade_frontalface_alt.xml"
-size = 6
+size = 4
 face_route = dirname+"\\unknowfacesto"
 classifier = cv2.CascadeClassifier(model2)
 
