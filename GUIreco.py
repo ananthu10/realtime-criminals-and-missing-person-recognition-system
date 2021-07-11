@@ -34,7 +34,7 @@ def fire_and_forget(url, files, data):
 
 
 ##################################################################################################
-db = sqlite3.connect('ip.db')
+db = sqlite3.connect('mydata4.db')
 # webcamIP, send_url, location,latitude, longitude
 print(db)
 ################
@@ -189,12 +189,12 @@ def ShowRecord():
         for i in result2:
             send_url = i[0]
             location = i[1]
-            longitude = i[2]
+            latitude = i[2]
             longitude = i[3]
 
         e2.insert(0, send_url)
         e3.insert(0, location)
-        e4.insert(0, longitude)
+        e4.insert(0, latitude)
         e5.insert(0, longitude)
 
     else:
@@ -278,10 +278,10 @@ def Showall():
                 send_url = i[1]
                 location = i[2]
                 latitude = i[3]
-                latitude = i[4]
+                longitude = i[4]
 
                 self.treeview.insert("", 'end', text=webcamIP, values=(
-                    send_url, location, latitude, latitude))
+                    send_url, location, latitude, longitude))
     root = Tk()
     root.title("Overview Page")
     A(root)
@@ -299,56 +299,6 @@ def Clear():
 #
 #
 # command=Create_db).grid(row=7, column=0)
-
-
-def Start():
-    size = 6
-    dirname, filename = os.path.split(os.path.abspath(__file__))
-    model = dirname+"\model\haarcascade_frontalface_alt.xml"
-    face_route = dirname+"\\unknowfaces"
-    print(face_route)
-    webcam = cv2.VideoCapture("rtsp://192.168.0.10:8080/h264_ulaw.sdp")
-    classifier = cv2.CascadeClassifier(model)
-    while True:
-        (rval, im) = webcam.read()
-        im = cv2.flip(im, 1, 0)  # Flip to act as a mirror
-
-        # Resize the image to speed up detection
-        mini = cv2.resize(
-            im, (int(im.shape[1] / size), int(im.shape[0] / size)))
-
-        faces = classifier.detectMultiScale(mini)
-        location = "aluva"
-        longitude = 76.1971
-
-        latitude = 10.227
-
-        for f in faces:
-            (x, y, w, h) = [v * size for v in f]  # Scale the shapesize backup
-            cv2.rectangle(im, (x, y), (x + w, y + h), (0, 255, 0), thickness=4)
-            # Save just the rectangle faces in SubRecFaces
-            sub_face = im[y:y+h, x:x+w]
-            FaceFileName = face_route+"\\face_" + str(y) + ".jpg"
-            cv2.imwrite(FaceFileName, sub_face)
-
-            image_taken_time = datetime.now()
-
-            files = {'image': open(FaceFileName, 'rb')}
-            print("##################")
-            print(files)
-            data = {"location": location,
-                    "latitude": latitude, "longitude": longitude, "image_taken_time": image_taken_time}
-
-            fire_and_forget(test_url, files=files, data=data)
-
-        cv2.imshow('System',   im)
-        key = cv2.waitKey(10)
-        # if Esc key is press then break out of the loop
-        if key == 27:
-            break
-
-
-v = [1, 2, 3, 4, 5]
 
 
 # def request_task(url, files, data):
@@ -388,6 +338,19 @@ def helloCallBack(webcamIP, send_url, location, latitude, longitude):
     #   os.system('test.py '+str(s))
 
 
+def deleteAll():
+    webcamIP = e1.get()
+    Delete = "Delete from IP_TABLE "
+    mycursor.execute(Delete)
+    db.commit()
+    messagebox.showinfo("Information", "All Record Deleted")
+    e1.delete(0, END)
+    e2.delete(0, END)
+    e3.delete(0, END)
+    e4.delete(0, END)
+    e5.delete(0, END)
+
+
 def Excute():
     Select = "Select * from IP_TABLE"
     mycursor.execute(Select)
@@ -418,13 +381,13 @@ button2 = Button(root, text="Delete", width=10, height=2,
 button3 = Button(root, text="Update", width=10, height=2,
                  command=Update).grid(row=7, column=3)
 button4 = Button(root, text="Show record", width=10, height=2,
-                 command=ShowRecord).grid(row=7, column=5)
+                 command=ShowRecord).grid(row=7, column=4)
 button5 = Button(root, text="Show All", width=10, height=2,
-                 command=Showall).grid(row=7, column=7)
+                 command=Showall).grid(row=7, column=5)
 button6 = Button(root, text="Clear", width=10, height=2,
-                 command=Clear).grid(row=7, column=9)
-button7 = Button(root, text="Start", width=10, height=2,
-                 command=Start).grid(row=7, column=9)
-button8 = Button(root, text="excute", width=10, height=2,
-                 command=Excute).grid(row=7, column=9)
+                 command=Clear).grid(row=7, column=6)
+button7 = Button(root, text="excute", width=10, height=2,
+                 command=Excute).grid(row=7, column=7)
+button7 = Button(root, text="delete all", width=10, height=2,
+                 command=deleteAll).grid(row=7, column=8)
 root.mainloop()

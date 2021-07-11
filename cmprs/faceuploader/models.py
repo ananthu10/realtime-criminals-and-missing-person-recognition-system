@@ -1,7 +1,10 @@
 from django.db import models
 import datetime
 # Create your models here.
-from django.utils.timezone import now
+# from django.utils.timezone import now
+import datetime
+
+now = datetime.datetime.now()
 
 
 class Face_image(models.Model):
@@ -13,10 +16,13 @@ class Face_image(models.Model):
     name = models.CharField(max_length=30)
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True)
+    # created = models.DateTimeField(default=now)
+    # updated = models.DateTimeField(default=now)
     dob = models.DateField()
     GCHOICES = (
-        ('FEMALE', 'Female'),
+
         ('MALE', 'Male'),
+        ('FEMALE', 'Female'),
     )
     gender = models.CharField(choices=GCHOICES, max_length=20, default='none')
     case = models.CharField(choices=FCHOICES, max_length=20, default='Missing')

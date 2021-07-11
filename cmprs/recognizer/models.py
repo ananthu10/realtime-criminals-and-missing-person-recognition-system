@@ -4,6 +4,10 @@ from django.db import models
 
 from faceuploader.models import Face_image
 
+import datetime
+
+now = datetime.datetime.now()
+
 
 class Recognize(models.Model):
 

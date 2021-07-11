@@ -16,7 +16,7 @@ send_url = sys.argv[2]
 location = sys.argv[3]
 latitude1 = sys.argv[4]
 longitude1 = sys.argv[5]
-
+print(webcamIP, send_url, location)
 
 size = 6
 dirname, filename = os.path.split(os.path.abspath(__file__))
@@ -28,7 +28,7 @@ webcam = cv2.VideoCapture(webcamIP)
 location = location
 longitude = float(longitude1)
 latitude = float(latitude1)
-
+# http://127.0.0.1:8000/api/test/
 test_url = send_url
 # http://192.168.0.22:8000/api/test/
 # classifier = cv2.CascadeClassifier("rtsp://192.168.0.11:8080/h264_ulaw.sdp")
